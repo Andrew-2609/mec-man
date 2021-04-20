@@ -1,4 +1,0 @@
-### ECLIPSE ###
-.classpath
-.project
-.settings/
