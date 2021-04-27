@@ -1,7 +1,8 @@
-package com.ndrewcoding.graficos;
+package com.ndrewcoding.grafics;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.imageio.ImageIO;
 
@@ -12,7 +13,7 @@ public class Spritesheet {
 	public Spritesheet(String path)
 	{
 		try {
-			spritesheet = ImageIO.read(getClass().getResource(path));
+			spritesheet = ImageIO.read(Objects.requireNonNull(getClass().getResource(path), "The spritesheet cannot be null!!"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

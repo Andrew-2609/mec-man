@@ -2,20 +2,15 @@ package com.ndrewcoding.world;
 
 public class Vector2i {
 
-	public int x,y;
-	
-	public Vector2i(int x,int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public boolean equals(Object object) {
-		Vector2i vec = (Vector2i) object;
-		if(vec.x == this.x && vec.y == this.y) {
-			return true;
-		}
-		
-		return false;
-	}
-	
+    public int x, y;
+
+    public Vector2i(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public boolean equals(Vector2i vector2i) {
+        return vector2i.x == this.x && vector2i.y == this.y;
+    }
+
 }

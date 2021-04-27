@@ -8,8 +8,9 @@ import com.ndrewcoding.world.Camera;
 
 public class FinalBoss extends Entity {
 
-	private int frames = 0, maxFrames = 16, index = 0, maxIndex = 4;
-	private BufferedImage sprites[];
+	private int frames = 0;
+	private int index = 0;
+	private final BufferedImage[] sprites;
 
 	public FinalBoss(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
@@ -26,9 +27,11 @@ public class FinalBoss extends Entity {
 		depth = 1;
 
 		frames++;
+		int maxFrames = 16;
 		if (frames == maxFrames) {
 			frames = 0;
 			index++;
+			int maxIndex = 4;
 			if (index > maxIndex) {
 				index = 0;
 			}
@@ -56,7 +59,7 @@ public class FinalBoss extends Entity {
 		MecSlime mecSlime = new MecSlime(this.getX() + px, this.getY() + py, 3, 3, null, dx, dy);
 		Game.mecSlime.add(mecSlime);
 
-		if (Entity.isColidding(this, Game.player)) {
+		if (Entity.isColliding(this, Game.player)) {
 			Game.player.life -= 5;
 		}
 	}
