@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/Andrew-2609/mec-man/main/logo-gif.gif" alt="Mec-Man Logo gif" width="50"/> Mec-Man
+# <img src="/logo-gif.gif" alt="Mec-Man Logo gif" width="50"/> Mec-Man
 
 ## About the Game
 Hello there, here's Andrew. I've been developing this little game since 2019, but only now I managed to spend more time to work on it. I started this project aiming to do a Pec-Man copy, but the more I felt comfortable to program it, more I tried to make something more... original.  The game base was created from [Danki Code's course](https://cursos.dankicode.com/), but soon I diverged **a lot** from the tutorials.
