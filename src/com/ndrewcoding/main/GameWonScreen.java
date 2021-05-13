@@ -115,7 +115,6 @@ public class GameWonScreen {
         Menu.drawCenteredString(Menu.language.finalScore, 480, 360, g);
         Menu.drawCenteredString(Player.score + "", 480, 380, g);
 
-        // Op��es
         g.setColor(Color.white);
         g.setFont(new Font("arial", Font.PLAIN, 20));
         Menu.drawCenteredString(Menu.language.playAgain, 480, 220, g);

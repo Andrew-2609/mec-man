@@ -13,7 +13,7 @@ public class German extends Language {
         this.score = "Punktzahl: ";
         this.homeworks = "Hausarbeiten: ";
         this.level = "Niveau: ";
-        this.thanksForPlaying = "Danke f�rs Spielen!";
+        this.thanksForPlaying = "Danke fürs Spielen!";
         this.gameMadeBy = "Spiel komplett gemacht von:";
         this.finalScore = "Endergebnis:";
         this.congratulations = "Glückwünsche!";
