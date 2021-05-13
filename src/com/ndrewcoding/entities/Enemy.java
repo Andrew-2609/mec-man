@@ -68,8 +68,6 @@ public class Enemy extends Entity {
                 ghostFrames = 0;
             }
         }
-
-        System.out.println(enemyCurrentSpeed);
     }
 
     public static void increaseEnemySpeed(int speed) {

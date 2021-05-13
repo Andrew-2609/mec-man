@@ -1,18 +1,14 @@
 package com.ndrewcoding.main;
 
-import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import com.ndrewcoding.entities.Player;
-import com.ndrewcoding.main.languages.Language;
 import com.ndrewcoding.main.languages.English;
 import com.ndrewcoding.main.languages.German;
+import com.ndrewcoding.main.languages.Language;
 import com.ndrewcoding.main.languages.Portuguese;
+
+import java.awt.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class Menu {
 
