@@ -19,7 +19,7 @@ import com.ndrewcoding.entities.Particle;
 import com.ndrewcoding.entities.Player;
 import com.ndrewcoding.entities.SnowFloor;
 import com.ndrewcoding.entities.Homework;
-import com.ndrewcoding.grafics.Spritesheet;
+import com.ndrewcoding.graphics.Spritesheet;
 import com.ndrewcoding.main.Game;
 
 public class World {

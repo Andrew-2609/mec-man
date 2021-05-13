@@ -1,4 +1,4 @@
-package com.ndrewcoding.grafics;
+package com.ndrewcoding.graphics;
 
 import java.awt.Color;
 import java.awt.Font;

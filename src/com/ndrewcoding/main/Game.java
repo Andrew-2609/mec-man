@@ -1,8 +1,8 @@
 package com.ndrewcoding.main;
 
 import com.ndrewcoding.entities.*;
-import com.ndrewcoding.grafics.Spritesheet;
-import com.ndrewcoding.grafics.UI;
+import com.ndrewcoding.graphics.Spritesheet;
+import com.ndrewcoding.graphics.UI;
 import com.ndrewcoding.world.World;
 
 import javax.imageio.ImageIO;
