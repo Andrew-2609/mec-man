@@ -38,77 +38,77 @@ public class World {
             map.getRGB(0, 0, map.getWidth(), map.getHeight(), pixels, 0, map.getWidth());
             for (int xx = 0; xx < map.getWidth(); xx++) {
                 for (int yy = 0; yy < map.getHeight(); yy++) {
-                    int pixelAtual = pixels[xx + (yy * map.getWidth())];
+                    int currentPixel = pixels[xx + (yy * map.getWidth())];
                     if (Game.CUR_LEVEL != 5) {
                         tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
                     } else {
                         tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Entity.SNOW_FLOOR_ITEM);
                     }
-                    if (pixelAtual == 0xFF000000) {
+                    if (currentPixel == 0xFF000000) {
                         tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_FLOOR);
-                    } else if (pixelAtual == 0xFFFFFFFF) {
+                    } else if (currentPixel == 0xFFFFFFFF) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL);
-                    } else if (pixelAtual == 0xFF7F0037) {
+                    } else if (currentPixel == 0xFF7F0037) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL2);
-                    } else if (pixelAtual == 0xFF267F00) {
+                    } else if (currentPixel == 0xFF267F00) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL3);
-                    } else if (pixelAtual == 0xFFFFFB49) {
+                    } else if (currentPixel == 0xFFFFFB49) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL4);
-                    } else if (pixelAtual == 0xFF007F46) {
+                    } else if (currentPixel == 0xFF007F46) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL5);
-                    } else if (pixelAtual == 0xFFFF7FB6) {
+                    } else if (currentPixel == 0xFFFF7FB6) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL6);
-                    } else if (pixelAtual == 0xFFFF6A00) {
+                    } else if (currentPixel == 0xFFFF6A00) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL7);
-                    } else if (pixelAtual == 0xFFB200FF) {
+                    } else if (currentPixel == 0xFFB200FF) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL8);
-                    } else if (pixelAtual == 0xFF004A7F) {
+                    } else if (currentPixel == 0xFF004A7F) {
                         tiles[xx + (yy * WIDTH)] = new WallTile(xx * 16, yy * 16, Tile.TILE_WALL9);
-                    } else if (pixelAtual == 0xFF0026FF) {
+                    } else if (currentPixel == 0xFF0026FF) {
                         Game.player.setX(xx * 16);
                         Game.player.setY(yy * 16);
                         Player.xInitial = Game.player.getX();
                         Player.yInitial = Game.player.getY();
-                    } else if (pixelAtual == 0xFF808080) {
+                    } else if (currentPixel == 0xFF808080) {
                         tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_WALL2);
-                    } else if (pixelAtual == 0xFFAFFFC5) {
+                    } else if (currentPixel == 0xFFAFFFC5) {
                         tiles[xx + (yy * WIDTH)] = new FloorTile(xx * 16, yy * 16, Tile.TILE_WALL8);
-                    } else if (pixelAtual == 0xFFFFD800) {
-                        Homework homework = new Homework(xx * 16, yy * 16, 16, 16, 0, Entity.TRABALHO_SPRITE);
+                    } else if (currentPixel == 0xFFFFD800) {
+                        Homework homework = new Homework(xx * 16, yy * 16, 16, 16, 0, Entity.HOMEWORK_SPRITE);
                         Game.entities.add(homework);
-                        Game.trabalhosContagem++;
-                    } else if (pixelAtual == 0xFFFF0000) {
-                        Enemy enemy = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.INIMIGO_1);
+                        Game.homeworksCount++;
+                    } else if (currentPixel == 0xFFFF0000) {
+                        Enemy enemy = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_1);
                         Game.entities.add(enemy);
-                    } else if (pixelAtual == 0xFF4CFF00) {
-                        Enemy enemy2 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.INIMIGO_2);
+                    } else if (currentPixel == 0xFF4CFF00) {
+                        Enemy enemy2 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_2);
                         Game.entities.add(enemy2);
-                    } else if (pixelAtual == 0xFFC1DBF7) {
-                        Enemy enemy3 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.INIMIGO_3);
+                    } else if (currentPixel == 0xFFC1DBF7) {
+                        Enemy enemy3 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_3);
                         Game.entities.add(enemy3);
-                    } else if (pixelAtual == 0xFF0076BF) {
-                        Enemy enemy4 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.INIMIGO_4);
+                    } else if (currentPixel == 0xFF0076BF) {
+                        Enemy enemy4 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_4);
                         Game.entities.add(enemy4);
-                    } else if (pixelAtual == 0xFF3A4651) {
-                        Enemy enemy5 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.INIMIGO_5);
+                    } else if (currentPixel == 0xFF3A4651) {
+                        Enemy enemy5 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_5);
                         Game.entities.add(enemy5);
-                    } else if (pixelAtual == 0xFF754FFF) {
+                    } else if (currentPixel == 0xFF754FFF) {
                         Enemy subboss = new EnemySubBoss(xx * 16, yy * 16, 16, 16, 1, Entity.SUB_BOSS);
                         Game.entities.add(subboss);
-                    } else if (pixelAtual == 0xFFE74C3C) {
-                        Holiday holiday = new Holiday(xx * 16, yy * 16, 16, 16, 0, Entity.FERIADO_SPRITE);
+                    } else if (currentPixel == 0xFFE74C3C) {
+                        Holiday holiday = new Holiday(xx * 16, yy * 16, 16, 16, 0, Entity.HOLIDAY_SPRITE);
                         Game.entities.add(holiday);
-                    } else if (pixelAtual == 0xFFFEE4CF) {
+                    } else if (currentPixel == 0xFFFEE4CF) {
                         Coffee coffee = new Coffee(xx * 16, yy * 16, 16, 16, 0, Entity.COFFEE_SPRITE);
                         Game.entities.add(coffee);
-                    } else if (pixelAtual == 0xFFF1E0FF) {
+                    } else if (currentPixel == 0xFFF1E0FF) {
                         GraduationHat graduationHat = new GraduationHat(xx * 16, yy * 16, 16, 16, 0,
                                 Entity.GRADUATION_SPRITE);
                         Game.entities.add(graduationHat);
-                    } else if (pixelAtual == 0xFF7FFFFF) {
+                    } else if (currentPixel == 0xFF7FFFFF) {
                         SnowFloor snowFloor = new SnowFloor(xx * 16, yy * 16, 16, 16, 0, Entity.SNOW_FLOOR);
                         Game.entities.add(snowFloor);
-                    } else if (pixelAtual == 0xFF7F3300) {
+                    } else if (currentPixel == 0xFF7F3300) {
                         Entity fb = new FinalBoss(xx * 16, yy * 16, 48, 48, 1, Entity.FINAL_BOSS);
                         Game.entities.add(fb);
                     }
@@ -138,8 +138,8 @@ public class World {
         Game.spritesheet = new Spritesheet("/spritesheet.png");
         Game.player = new Player(0, 0, 16, 16, 1, Game.spritesheet.getSprite(32, 0, 16, 16));
         Game.entities.add(Game.player);
-        Game.trabalhosAtual = 0;
-        Game.trabalhosContagem = 0;
+        Game.currentHomeworks = 0;
+        Game.homeworksCount = 0;
         Game.world = new World("/" + level);
         if (Game.CUR_LEVEL > 3) {
             Game.checkCurrentLevelToSetRespectiveMusic();

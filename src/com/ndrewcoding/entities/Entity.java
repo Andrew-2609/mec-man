@@ -15,20 +15,20 @@ import com.ndrewcoding.world.World;
 
 public class Entity {
 
-    public static BufferedImage TRABALHO_SPRITE = Game.spritesheet.getSprite(0, 16, 16, 16);
-    public static BufferedImage FERIADO_SPRITE = Game.spritesheet.getSprite(16, 16, 16, 16);
+    public static BufferedImage HOMEWORK_SPRITE = Game.spritesheet.getSprite(0, 16, 16, 16);
+    public static BufferedImage HOLIDAY_SPRITE = Game.spritesheet.getSprite(16, 16, 16, 16);
     public static BufferedImage COFFEE_SPRITE = Game.spritesheet.getSprite(64, 16, 16, 16);
     public static BufferedImage SNOW_FLOOR = Game.spritesheet.getSprite(0, 64, 16, 16);
     public static BufferedImage SNOW_FLOOR_ITEM = Game.spritesheet.getSprite(32, 64, 16, 16);
     public static BufferedImage GRADUATION_SPRITE = Game.spritesheet.getSprite(80, 32, 16, 16);
-    public static BufferedImage INIMIGO_1 = Game.spritesheet.getSprite(0, 32, 16, 16);
-    public static BufferedImage INIMIGO_2 = Game.spritesheet.getSprite(16, 32, 16, 16);
-    public static BufferedImage INIMIGO_3 = Game.spritesheet.getSprite(112, 32, 16, 16);
-    public static BufferedImage INIMIGO_4 = Game.spritesheet.getSprite(128, 32, 16, 16);
-    public static BufferedImage INIMIGO_5 = Game.spritesheet.getSprite(144, 32, 16, 16);
+    public static BufferedImage ENEMY_1 = Game.spritesheet.getSprite(0, 32, 16, 16);
+    public static BufferedImage ENEMY_2 = Game.spritesheet.getSprite(16, 32, 16, 16);
+    public static BufferedImage ENEMY_3 = Game.spritesheet.getSprite(112, 32, 16, 16);
+    public static BufferedImage ENEMY_4 = Game.spritesheet.getSprite(128, 32, 16, 16);
+    public static BufferedImage ENEMY_5 = Game.spritesheet.getSprite(144, 32, 16, 16);
     public static BufferedImage SUB_BOSS = Game.spritesheet.getSprite(64, 0, 16, 16);
     public static BufferedImage FINAL_BOSS = Game.spritesheet.getSprite(160, 0, 48, 48);
-    public static BufferedImage INIMIGO_SLIME = Game.spritesheet.getSprite(96, 32, 16, 16);
+    public static BufferedImage ENEMY_SLIME_SPRITE = Game.spritesheet.getSprite(96, 32, 16, 16);
 
     protected double x;
     protected double y;

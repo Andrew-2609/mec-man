@@ -27,13 +27,13 @@ public class MecSlime extends Entity {
             x += dx;
             y += dy;
         } else {
-            Game.mecSlime.remove(this);
+            Game.mecSlimes.remove(this);
             World.generateParticles(1, (int) x, (int) y, Color.white);
             int random = Entity.rand.nextInt(100);
             int random2 = Entity.rand.nextInt(100);
             System.out.println(random + "," + random2);
             if (random > 90 && random2 < 5) {
-                Enemy e = new Enemy((int) x, (int) y, 16, 16, 1, Entity.INIMIGO_SLIME);
+                Enemy e = new Enemy((int) x, (int) y, 16, 16, 1, Entity.ENEMY_SLIME_SPRITE);
                 Game.entities.add(e);
             }
             return;
@@ -41,7 +41,7 @@ public class MecSlime extends Entity {
         curLife++;
         int life = 600;
         if (curLife == life) {
-            Game.mecSlime.remove(this);
+            Game.mecSlimes.remove(this);
         }
     }
 

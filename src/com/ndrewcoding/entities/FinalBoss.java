@@ -57,7 +57,7 @@ public class FinalBoss extends Entity {
 		}
 
 		MecSlime mecSlime = new MecSlime(this.getX() + px, this.getY() + py, 3, 3, null, dx, dy);
-		Game.mecSlime.add(mecSlime);
+		Game.mecSlimes.add(mecSlime);
 
 		if (Entity.isColliding(this, Game.player)) {
 			Game.player.life -= 5;

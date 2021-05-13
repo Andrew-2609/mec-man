@@ -105,7 +105,7 @@ public class EnemySubBoss extends Enemy {
             }
 
             Infection infection = new Infection(this.getX() + px, this.getY() + py, 3, 3, null, dx, dy);
-            Game.infection.add(infection);
+            Game.infections.add(infection);
         }
 
         if (Entity.isColliding(this, Game.player) && !ghostMode) {

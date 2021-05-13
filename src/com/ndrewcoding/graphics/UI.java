@@ -30,7 +30,7 @@ public class UI {
 
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("century gothic", Font.BOLD, 15));
-		g.drawString(definirTextosUI().homeworks + Game.trabalhosAtual + "|" + Game.trabalhosContagem, 32, 20);
+		g.drawString(definirTextosUI().homeworks + Game.currentHomeworks + "|" + Game.homeworksCount, 32, 20);
 
 		if (Game.CUR_LEVEL < 9) {
 			g.setColor(Color.yellow);

@@ -26,14 +26,14 @@ public class Infection extends Entity {
             x += dx;
             y += dy;
         } else {
-            Game.infection.remove(this);
+            Game.infections.remove(this);
             World.generateParticles(1, (int) x, (int) y, Color.white);
             return;
         }
         curLife++;
         int life = 50;
         if (curLife == life) {
-            Game.infection.remove(this);
+            Game.infections.remove(this);
         }
     }
 

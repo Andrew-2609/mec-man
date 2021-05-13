@@ -29,8 +29,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private final BufferedImage image;
 
     public static List<Entity> entities;
-    public static List<Infection> infection;
-    public static List<MecSlime> mecSlime;
+    public static List<Infection> infections;
+    public static List<MecSlime> mecSlimes;
     public static Spritesheet spritesheet;
     public static World world;
     public static Player player;
@@ -40,8 +40,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public GameOverScreen gameOverScreen;
     public GameWonScreen gameWonScreen;
 
-    public static int trabalhosAtual = 0;
-    public static int trabalhosContagem = 0;
+    public static int currentHomeworks = 0;
+    public static int homeworksCount = 0;
 
     public static String level = "/level1.png";
     public static int CUR_LEVEL = 1, MAX_LEVEL = 10;
@@ -58,8 +58,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
         spritesheet = new Spritesheet("/spritesheet.png");
         player = new Player(0, 0, 16, 16, 1, spritesheet.getSprite(32, 0, 16, 16));
         entities = new ArrayList<>();
-        infection = new ArrayList<>();
-        mecSlime = new ArrayList<>();
+        infections = new ArrayList<>();
+        mecSlimes = new ArrayList<>();
         world = new World(level);
         ui = new UI();
 
@@ -117,15 +117,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     entities.get(i).tick();
                 }
 
-                for (int i = 0; i < infection.size(); i++) {
-                    infection.get(i).tick();
+                for (int i = 0; i < infections.size(); i++) {
+                    infections.get(i).tick();
                 }
 
-                for (int i = 0; i < mecSlime.size(); i++) {
-                    mecSlime.get(i).tick();
+                for (int i = 0; i < mecSlimes.size(); i++) {
+                    mecSlimes.get(i).tick();
                 }
 
-                if (trabalhosAtual == trabalhosContagem) {
+                if (currentHomeworks == homeworksCount) {
                     CUR_LEVEL++;
                     Player.score = Player.score + 200;
                     Enemy.enemyRange += 40;
@@ -181,12 +181,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
             entities.get(i).render(g);
         }
 
-        for (int i = 0; i < infection.size(); i++) {
-            infection.get(i).render(g);
+        for (int i = 0; i < infections.size(); i++) {
+            infections.get(i).render(g);
         }
 
-        for (int i = 0; i < mecSlime.size(); i++) {
-            mecSlime.get(i).render(g);
+        for (int i = 0; i < mecSlimes.size(); i++) {
+            mecSlimes.get(i).render(g);
         }
         g.dispose();
         g = bs.getDrawGraphics();

@@ -173,8 +173,8 @@ public class Player extends Entity {
             }
         }
 
-        for (int i = 0; i < Game.infection.size(); i++) {
-            Infection infection = Game.infection.get(i);
+        for (int i = 0; i < Game.infections.size(); i++) {
+            Infection infection = Game.infections.get(i);
             if (Entity.isColliding(this, infection)) {
                 takeDamage();
             }
@@ -271,7 +271,7 @@ public class Player extends Entity {
             if (current instanceof Homework) {
                 if (Entity.isColliding(this, current)) {
                     Sound.paperCaught.play();
-                    Game.trabalhosAtual++;
+                    Game.currentHomeworks++;
                     Game.entities.remove(i);
                     score += 100;
                     return;
