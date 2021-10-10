@@ -1,13 +1,14 @@
 package com.ndrewcoding.entities;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 import com.ndrewcoding.main.Game;
 import com.ndrewcoding.main.Sound;
 import com.ndrewcoding.world.Camera;
 import com.ndrewcoding.world.World;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player extends Entity {
 
@@ -26,10 +27,6 @@ public class Player extends Entity {
 
     public BufferedImage[] spriteRight;
     public BufferedImage[] spriteLeft;
-    public BufferedImage[] spriteUp;
-    public BufferedImage spriteUpIdle;
-    public BufferedImage[] spriteDown;
-    public BufferedImage spriteDownIdle;
     public BufferedImage[] spriteRising;
     public BufferedImage spriteDamaged;
     public BufferedImage spriteHealing;
@@ -50,31 +47,41 @@ public class Player extends Entity {
 
     // public int framesTeleporte = 500;
 
-    public Player(int x, int y, int width, int height, double speed, BufferedImage sprite) {
+    public Player(int x, int y, int width, int height, double speed, BufferedImage sprite, String playerSkin) {
         super(x, y, width, height, speed, sprite);
+        Map<String, int[]> playerSkins = populatePlayerSkins();
+
+        if (playerSkins.get(playerSkin) == null) {
+            playerSkin = "normal";
+        }
+
+        int yPlayerMovingRight = playerSkins.get(playerSkin)[0];
+        int yPlayerMovingLeft = playerSkins.get(playerSkin)[1];
 
         spriteRight = new BufferedImage[4];
         spriteLeft = new BufferedImage[4];
-        spriteUp = new BufferedImage[4];
-        spriteDown = new BufferedImage[4];
+        
+        populateHorizontalAndVerticalSprites(yPlayerMovingRight, yPlayerMovingLeft);
+        
         spriteRising = new BufferedImage[2];
-        for (int i = 0; i < 4; i++) {
-            spriteRight[i] = Game.spritesheet.getSprite(96 - (i * 16), 64, 16, 16);
-            spriteLeft[i] = Game.spritesheet.getSprite(48 + (i * 16), 80, 16, 16);
-            spriteDown[i] = Game.spritesheet.getSprite(112, 80 + (i * 16), 16, 16);
-            spriteUp[i] = Game.spritesheet.getSprite(128, 80 + (i * 16), 16, 16);
-            if (i > 1) {
-                spriteDown[i] = Game.spritesheet.getSprite(112, 128 - (i * 16), 16, 16);
-                spriteUp[i] = Game.spritesheet.getSprite(128, 128 - (i * 16), 16, 16);
-            }
-        }
-        spriteDownIdle = Game.spritesheet.getSprite(112, 64, 16, 16);
-        spriteUpIdle = Game.spritesheet.getSprite(128, 64, 16, 16);
-
         spriteRising[0] = Game.spritesheet.getSprite(32, 0, 16, 16);
         spriteRising[1] = Game.spritesheet.getSprite(48, 0, 16, 16);
         spriteDamaged = Game.spritesheet.getSprite(48, 32, 16, 16);
         spriteHealing = Game.spritesheet.getSprite(64, 32, 16, 16);
+    }
+
+    private Map<String, int[]> populatePlayerSkins() {
+        Map<String, int[]> playerSkins = new HashMap<>();
+        playerSkins.put("normal", new int[]{0, 16});
+        playerSkins.put("suit", new int[]{32, 48});
+        return playerSkins;
+    }
+
+    private void populateHorizontalAndVerticalSprites(int yPlayerMovingRight, int yPlayerMovingLeft) {
+        for (int i = 0; i < 4; i++) {
+            spriteRight[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingRight, 16, 16);
+            spriteLeft[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingLeft, 16, 16);
+        }
     }
 
     public void tick() {
@@ -97,11 +104,9 @@ public class Player extends Entity {
         }
         if (up && World.isFree(this.getX(), (int) (y - speed))) {
             moved = true;
-            lastDirection = 2;
             y -= speed;
         } else if (down && World.isFree(this.getX(), (int) (y + speed))) {
             moved = true;
-            lastDirection = -2;
             y += speed;
         }
 
@@ -356,20 +361,12 @@ public class Player extends Entity {
                 g.drawImage(spriteRight[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
             } else if (lastDirection == -1) {
                 g.drawImage(spriteLeft[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-            } else if (lastDirection == 2) {
-                g.drawImage(spriteUp[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
-            } else if (lastDirection == -2) {
-                g.drawImage(spriteDown[index], this.getX() - Camera.x, this.getY() - Camera.y, null);
             }
         } else {
             if (lastDirection == 1) {
                 g.drawImage(spriteRight[0], this.getX() - Camera.x, this.getY() - Camera.y, null);
             } else if (lastDirection == -1) {
                 g.drawImage(spriteLeft[0], this.getX() - Camera.x, this.getY() - Camera.y, null);
-            } else if (lastDirection == 2) {
-                g.drawImage(spriteUpIdle, this.getX() - Camera.x, this.getY() - Camera.y, null);
-            } else if (lastDirection == -2) {
-                g.drawImage(spriteDownIdle, this.getX() - Camera.x, this.getY() - Camera.y, null);
             }
         }
     }

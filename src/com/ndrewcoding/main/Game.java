@@ -32,6 +32,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public static List<Infection> infections;
     public static List<MecSlime> mecSlimes;
     public static Spritesheet spritesheet;
+    public static Spritesheet playerSpritesheet;
     public static World world;
     public static Player player;
 
@@ -43,7 +44,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public static int currentHomeworks = 0;
     public static int homeworksCount = 0;
 
-    public static String level = "/level1.png";
+    public static String level = "/levelTestes.png";
     public static int CUR_LEVEL = 1, MAX_LEVEL = 10;
     public static boolean restartGame = false;
 
@@ -56,7 +57,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
         spritesheet = new Spritesheet("/spritesheet.png");
-        player = new Player(0, 0, 16, 16, 1, spritesheet.getSprite(32, 0, 16, 16));
+        playerSpritesheet = new Spritesheet("/player_spritesheet.png");
+        player = new Player(0, 0, 16, 16, 1, playerSpritesheet.getSprite(0, 0, 16, 16), "normal");
         entities = new ArrayList<>();
         infections = new ArrayList<>();
         mecSlimes = new ArrayList<>();
