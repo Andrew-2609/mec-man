@@ -103,11 +103,9 @@ public class Player extends Entity {
             int coffeeEffectDurationTime = 240;
             if (framesIniciaisCafe == coffeeEffectDurationTime) {
                 framesIniciaisCafe = 0;
-                for (int i1 = 0; i1 < Game.entities.size(); i1++) {
-                    Entity e = Game.entities.get(i1);
-                    if (e instanceof Enemy) {
-                        ((Enemy) e).enemyCurrentSpeed = previousSpeed;
-                    }
+                for (int i1 = 0; i1 < Game.enemies.size(); i1++) {
+                    Enemy e = Game.enemies.get(i1);
+                    e.enemyCurrentSpeed = previousSpeed;
                 }
             }
         }
@@ -146,17 +144,15 @@ public class Player extends Entity {
             }
         }
 
-        for (int i = 0; i < Game.entities.size(); i++) {
-            Entity inimigo = Game.entities.get(i);
-            if (inimigo instanceof Enemy || inimigo instanceof FinalBoss) {
-                if (Entity.isColliding(this, inimigo) && !Enemy.ghostMode) {
-                    takeDamage();
-                } else if (Entity.isColliding(this, inimigo) && Enemy.ghostMode) {
-                    life++;
-                    isHealing = true;
-                    if (life >= maxLife) {
-                        life = maxLife;
-                    }
+        for (int i = 0; i < Game.enemies.size(); i++) {
+            Enemy enemy = Game.enemies.get(i);
+            if (Entity.isColliding(this, enemy) && !Enemy.ghostMode) {
+                takeDamage();
+            } else if (Entity.isColliding(this, enemy) && Enemy.ghostMode) {
+                life++;
+                isHealing = true;
+                if (life >= maxLife) {
+                    life = maxLife;
                 }
             }
         }
@@ -236,11 +232,9 @@ public class Player extends Entity {
                     Sound.calendarCaught.play();
                     Game.entities.remove(i);
                     Enemy.ghostMode = true;
-                    for (int i1 = 0; i1 < Game.entities.size(); i1++) {
-                        Entity e = Game.entities.get(i1);
-                        if (e instanceof Enemy) {
-                            ((Enemy) e).ghostFrames = 0;
-                        }
+                    for (int i1 = 0; i1 < Game.enemies.size(); i1++) {
+                        Enemy e = Game.enemies.get(i1);
+                        e.ghostFrames = 0;
                     }
                     score += 10;
                     return;
@@ -273,16 +267,14 @@ public class Player extends Entity {
                     framesIniciaisCafe++;
                     World.generateParticles(15, getX() + 8, getY() + 8, Color.orange);
                     Sound.slowMotionSound.play();
-                    for (int i1 = 0; i1 < Game.entities.size(); i1++) {
-                        Entity e = Game.entities.get(i1);
-                        if (e instanceof Enemy) {
-                            if (((Enemy) e).enemyCurrentSpeed == 25) {
-                                previousSpeed = 65;
-                            } else {
-                                previousSpeed = ((Enemy) e).enemyCurrentSpeed;
-                            }
-                            ((Enemy) e).enemyCurrentSpeed = 25;
+                    for (int i1 = 0; i1 < Game.enemies.size(); i1++) {
+                        Enemy e = Game.enemies.get(i1);
+                        if (e.enemyCurrentSpeed == 25) {
+                            previousSpeed = 65;
+                        } else {
+                            previousSpeed = e.enemyCurrentSpeed;
                         }
+                        e.enemyCurrentSpeed = 25;
                     }
                     life -= 10;
                     isDamaged = true;

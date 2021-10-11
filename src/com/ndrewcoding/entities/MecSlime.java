@@ -8,7 +8,7 @@ import com.ndrewcoding.main.Game;
 import com.ndrewcoding.world.Camera;
 import com.ndrewcoding.world.World;
 
-public class MecSlime extends Entity {
+public class MecSlime extends Enemy {
 
     private final double dx;
     private final double dy;
@@ -27,21 +27,21 @@ public class MecSlime extends Entity {
             x += dx;
             y += dy;
         } else {
-            Game.mecSlimes.remove(this);
+            Game.enemies.remove(this);
             World.generateParticles(1, (int) x, (int) y, Color.white);
             int random = Entity.rand.nextInt(100);
             int random2 = Entity.rand.nextInt(100);
             System.out.println(random + "," + random2);
             if (random > 90 && random2 < 5) {
                 Enemy e = new Enemy((int) x, (int) y, 16, 16, 1, Entity.ENEMY_SLIME_SPRITE);
-                Game.entities.add(e);
+                Game.enemies.add(e);
             }
             return;
         }
         curLife++;
         int life = 600;
         if (curLife == life) {
-            Game.mecSlimes.remove(this);
+            Game.enemies.remove(this);
         }
     }
 

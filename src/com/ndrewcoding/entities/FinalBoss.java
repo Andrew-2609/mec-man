@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 import com.ndrewcoding.main.Game;
 import com.ndrewcoding.world.Camera;
 
-public class FinalBoss extends Entity {
+public class FinalBoss extends Enemy {
 
 	private int frames = 0;
 	private int index = 0;
 	private final BufferedImage[] sprites;
 
-	public FinalBoss(double x, double y, int width, int height, double speed, BufferedImage sprite) {
+	public FinalBoss(int x, int y, int width, int height, int speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
 
 		sprites = new BufferedImage[5];
@@ -57,7 +57,7 @@ public class FinalBoss extends Entity {
 		}
 
 		MecSlime mecSlime = new MecSlime(this.getX() + px, this.getY() + py, 3, 3, null, dx, dy);
-		Game.mecSlimes.add(mecSlime);
+		Game.enemies.add(mecSlime);
 
 		if (Entity.isColliding(this, Game.player)) {
 			Game.player.life -= 5;

@@ -79,22 +79,22 @@ public class World {
                         Game.homeworksCount++;
                     } else if (currentPixel == 0xFFFF0000) {
                         Enemy enemy = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_1);
-                        Game.entities.add(enemy);
+                        Game.enemies.add(enemy);
                     } else if (currentPixel == 0xFF4CFF00) {
                         Enemy enemy2 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_2);
-                        Game.entities.add(enemy2);
+                        Game.enemies.add(enemy2);
                     } else if (currentPixel == 0xFFC1DBF7) {
                         Enemy enemy3 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_3);
-                        Game.entities.add(enemy3);
+                        Game.enemies.add(enemy3);
                     } else if (currentPixel == 0xFF0076BF) {
                         Enemy enemy4 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_4);
-                        Game.entities.add(enemy4);
+                        Game.enemies.add(enemy4);
                     } else if (currentPixel == 0xFF3A4651) {
                         Enemy enemy5 = new Enemy(xx * 16, yy * 16, 16, 16, 1, Entity.ENEMY_5);
-                        Game.entities.add(enemy5);
+                        Game.enemies.add(enemy5);
                     } else if (currentPixel == 0xFF754FFF) {
                         Enemy subboss = new EnemySubBoss(xx * 16, yy * 16, 16, 16, 1, Entity.SUB_BOSS);
-                        Game.entities.add(subboss);
+                        Game.enemies.add(subboss);
                     } else if (currentPixel == 0xFFE74C3C) {
                         Holiday holiday = new Holiday(xx * 16, yy * 16, 16, 16, 0, Entity.HOLIDAY_SPRITE);
                         Game.entities.add(holiday);
@@ -109,8 +109,8 @@ public class World {
                         SnowFloor snowFloor = new SnowFloor(xx * 16, yy * 16, 16, 16, 0, Entity.SNOW_FLOOR);
                         Game.entities.add(snowFloor);
                     } else if (currentPixel == 0xFF7F3300) {
-                        Entity fb = new FinalBoss(xx * 16, yy * 16, 48, 48, 1, Entity.FINAL_BOSS);
-                        Game.entities.add(fb);
+                        Enemy fb = new FinalBoss(xx * 16, yy * 16, 48, 48, 1, Entity.FINAL_BOSS);
+                        Game.enemies.add(fb);
                     }
                 }
             }

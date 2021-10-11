@@ -29,8 +29,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     private final BufferedImage image;
 
     public static List<Entity> entities;
+    public static List<Enemy> enemies;
     public static List<Infection> infections;
-    public static List<MecSlime> mecSlimes;
 
     public static Spritesheet spritesheet;
     public static Spritesheet playerSpritesheet;
@@ -63,8 +63,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         player = new Player(0, 0, 16, 16, 1, playerSpritesheet.getSprite(0, 0, 16, 16), "normal");
         entities = new ArrayList<>();
+        enemies = new ArrayList<>();
         infections = new ArrayList<>();
-        mecSlimes = new ArrayList<>();
         world = new World(level);
         ui = new UI();
 
@@ -122,12 +122,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     entities.get(i).tick();
                 }
 
-                for (int i = 0; i < infections.size(); i++) {
-                    infections.get(i).tick();
+                for (int i = 0; i < enemies.size(); i++) {
+                    enemies.get(i).tick();
                 }
 
-                for (int i = 0; i < mecSlimes.size(); i++) {
-                    mecSlimes.get(i).tick();
+                for (int i = 0; i < infections.size(); i++) {
+                    infections.get(i).tick();
                 }
 
                 if (currentHomeworks == homeworksCount) {
@@ -186,12 +186,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
             entities.get(i).render(g);
         }
 
-        for (int i = 0; i < infections.size(); i++) {
-            infections.get(i).render(g);
+        enemies.sort(Entity.nodeSorter);
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).render(g);
         }
 
-        for (int i = 0; i < mecSlimes.size(); i++) {
-            mecSlimes.get(i).render(g);
+        infections.sort(Entity.nodeSorter);
+        for (int i = 0; i < infections.size(); i++) {
+            infections.get(i).render(g);
         }
         g.dispose();
         g = bs.getDrawGraphics();
