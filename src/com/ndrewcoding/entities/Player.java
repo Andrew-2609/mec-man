@@ -55,7 +55,7 @@ public class Player extends Entity {
         this.spriteRight = new BufferedImage[4];
         this.spriteLeft = new BufferedImage[4];
 
-        populateHorizontalAndVerticalSprites(yPlayerMovingRight, yPlayerMovingLeft);
+        populatePlayerSprites(yPlayerMovingRight, yPlayerMovingLeft);
     }
 
     private Map<String, int[]> populatePlayerSkins() {
@@ -65,7 +65,7 @@ public class Player extends Entity {
         return playerSkins;
     }
 
-    private void populateHorizontalAndVerticalSprites(int yPlayerMovingRight, int yPlayerMovingLeft) {
+    private void populatePlayerSprites(int yPlayerMovingRight, int yPlayerMovingLeft) {
         for (int i = 0; i < 4; i++) {
             this.spriteRight[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingRight, 16, 16);
             this.spriteLeft[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingLeft, 16, 16);
