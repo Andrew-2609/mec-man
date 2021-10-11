@@ -27,13 +27,9 @@ public class Player extends Entity {
 
     public BufferedImage[] spriteRight;
     public BufferedImage[] spriteLeft;
-    public BufferedImage[] spriteRising;
-    public BufferedImage spriteDamaged;
-    public BufferedImage spriteHealing;
 
     private int frames = 0;
     private int index = 0;
-    private int indexOfRisingFrames = 0;
 
     private int previousSpeed;
     private int framesIniciaisCafe = 0;
@@ -60,14 +56,8 @@ public class Player extends Entity {
 
         spriteRight = new BufferedImage[4];
         spriteLeft = new BufferedImage[4];
-        
+
         populateHorizontalAndVerticalSprites(yPlayerMovingRight, yPlayerMovingLeft);
-        
-        spriteRising = new BufferedImage[2];
-        spriteRising[0] = Game.spritesheet.getSprite(32, 0, 16, 16);
-        spriteRising[1] = Game.spritesheet.getSprite(48, 0, 16, 16);
-        spriteDamaged = Game.spritesheet.getSprite(48, 32, 16, 16);
-        spriteHealing = Game.spritesheet.getSprite(64, 32, 16, 16);
     }
 
     private Map<String, int[]> populatePlayerSkins() {
@@ -155,11 +145,6 @@ public class Player extends Entity {
             frames++;
             if (frames == maxFrames) {
                 frames = 0;
-                indexOfRisingFrames++;
-                int maxIndexRising = 1;
-                if (indexOfRisingFrames > maxIndexRising) {
-                    indexOfRisingFrames = 0;
-                }
             }
         }
 
@@ -344,16 +329,13 @@ public class Player extends Entity {
     public void render(Graphics g) {
         Game.player.speed = 1;
         if (isHealing) {
-            g.drawImage(spriteHealing, this.getX() - Camera.x, this.getY() - Camera.y, null);
+            World.generateParticles(2, this.getX() + 8, this.getY() + 8, Color.green);
         } else if (isDamaged) {
-            g.drawImage(spriteDamaged, this.getX() - Camera.x, this.getY() - Camera.y, null);
+            World.generateParticles(1, this.getX() + 8, this.getY() + 8, Color.red);
+
             if (Game.CUR_LEVEL == 9) {
                 Game.player.speed = 0.5;
             }
-        }
-
-        if (isRising) {
-            g.drawImage(spriteRising[indexOfRisingFrames], this.getX() - Camera.x, this.getY() - Camera.y, null);
         }
 
         if (moved) {
