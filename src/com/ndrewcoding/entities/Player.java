@@ -52,8 +52,8 @@ public class Player extends Entity {
         int yPlayerMovingRight = playerSkins.get(playerSkin)[0];
         int yPlayerMovingLeft = playerSkins.get(playerSkin)[1];
 
-        spriteRight = new BufferedImage[4];
-        spriteLeft = new BufferedImage[4];
+        this.spriteRight = new BufferedImage[4];
+        this.spriteLeft = new BufferedImage[4];
 
         populateHorizontalAndVerticalSprites(yPlayerMovingRight, yPlayerMovingLeft);
     }
@@ -67,134 +67,30 @@ public class Player extends Entity {
 
     private void populateHorizontalAndVerticalSprites(int yPlayerMovingRight, int yPlayerMovingLeft) {
         for (int i = 0; i < 4; i++) {
-            spriteRight[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingRight, 16, 16);
-            spriteLeft[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingLeft, 16, 16);
+            this.spriteRight[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingRight, 16, 16);
+            this.spriteLeft[i] = Game.playerSpritesheet.getSprite(i * 16, yPlayerMovingLeft, 16, 16);
         }
     }
 
     public void tick() {
-        depth = 2;
+        this.depth = 2;
 
         if (score <= 0) {
             score = 0;
         }
 
-        moved = false;
+        this.moved = false;
 
-        if (right && World.isFree((int) (x + speed), this.getY())) {
-            moved = true;
-            x += speed;
-            lastDirection = 1;
-        } else if (left && World.isFree((int) (x - speed), this.getY())) {
-            moved = true;
-            x -= speed;
-            lastDirection = -1;
-        }
-        if (up && World.isFree(this.getX(), (int) (y - speed))) {
-            moved = true;
-            y -= speed;
-        } else if (down && World.isFree(this.getX(), (int) (y + speed))) {
-            moved = true;
-            y += speed;
-        }
+        checkPlayerMovement();
+        updatePlayerSpritesAndSoundsIfMoved();
+        checkIfCoffeeEffectHasBeenTriggered();
 
-        if (framesIniciaisCafe != 0) {
-            framesIniciaisCafe++;
-            int coffeeEffectDurationTime = 240;
-            if (framesIniciaisCafe == coffeeEffectDurationTime) {
-                framesIniciaisCafe = 0;
-                for (int i1 = 0; i1 < Game.enemies.size(); i1++) {
-                    Enemy e = Game.enemies.get(i1);
-                    e.enemyCurrentSpeed = previousSpeed;
-                }
-            }
-        }
+        checkCollisionWithEnemy();
+        checkCollisionWithInfection();
 
-        int maxFrames = 6;
-        if (moved) {
-            frames++;
-            if (frames == maxFrames) {
-                frames = 0;
-                index++;
-                int maxIndex = 3;
-                if (index > maxIndex) {
-                    if (Game.CUR_LEVEL != 5) {
-                        Sound.playerMovingSound.play();
-                    } else {
-                        Sound.snowFootstep.play();
-                    }
-                    index = 0;
-                }
-            }
-        } else {
-            Sound.snowFootstep.stop();
-        }
-
-        if (isRising) {
-            Game.player.setX(xInitial);
-            Game.player.setY(yInitial);
-            moved = false;
-            left = false;
-            right = false;
-            up = false;
-            down = false;
-            frames++;
-            if (frames == maxFrames) {
-                frames = 0;
-            }
-        }
-
-        for (int i = 0; i < Game.enemies.size(); i++) {
-            Enemy enemy = Game.enemies.get(i);
-            if (Entity.isColliding(this, enemy) && !Enemy.ghostMode) {
-                takeDamage();
-            } else if (Entity.isColliding(this, enemy) && Enemy.ghostMode) {
-                life++;
-                isHealing = true;
-                if (life >= maxLife) {
-                    life = maxLife;
-                }
-            }
-        }
-
-        for (int i = 0; i < Game.infections.size(); i++) {
-            Infection infection = Game.infections.get(i);
-            if (Entity.isColliding(this, infection)) {
-                takeDamage();
-            }
-        }
-
-        if (isDamaged) {
-            this.damageFrames++;
-            if (this.damageFrames == 8) {
-                Sound.playerHurtEffect.play();
-                this.damageFrames = 0;
-                isDamaged = false;
-                score -= 2;
-            }
-        }
-
-        if (isHealing) {
-            this.healingFrames++;
-            if (this.healingFrames == 8) {
-                Sound.healingSound.play();
-                this.healingFrames = 0;
-                isHealing = false;
-                score += 2;
-            }
-        }
-
-        if (isRising) {
-            World.generateParticles(1, this.getX() + 8, this.getY() + 8, Color.red);
-            risingFrames++;
-            Enemy.ghostMode = true;
-
-            if (risingFrames == 150) {
-                risingFrames = 0;
-                isRising = false;
-                Enemy.ghostMode = false;
-            }
-        }
+        checkIfPlayerIsGettingDamage();
+        checkIfPlayerIsHealing();
+        checkIfPlayerIsRising();
 
         catchHomework();
         catchHoliday();
@@ -203,6 +99,125 @@ public class Player extends Entity {
         verifyIfPlayerIsOnSnow();
 
         updateCamera();
+    }
+
+    private void checkCollisionWithEnemy() {
+        for (Enemy enemy : Game.enemies) {
+            if (Entity.isColliding(this, enemy) && !Enemy.ghostMode) {
+                takeDamage();
+            } else if (Entity.isColliding(this, enemy) && Enemy.ghostMode) {
+                this.life++;
+                this.isHealing = true;
+                if (this.life >= this.maxLife) {
+                    this.life = this.maxLife;
+                }
+            }
+        }
+    }
+
+    private void checkCollisionWithInfection() {
+        for (Infection infection : Game.infections) {
+            if (Entity.isColliding(this, infection)) {
+                takeDamage();
+            }
+        }
+    }
+
+    private void checkPlayerMovement() {
+        if (this.right && World.isFree((int) (this.x + this.speed), this.getY())) {
+            this.moved = true;
+            this.x += this.speed;
+            this.lastDirection = 1;
+        } else if (this.left && World.isFree((int) (this.x - this.speed), this.getY())) {
+            this.moved = true;
+            this.x -= this.speed;
+            this.lastDirection = -1;
+        }
+
+        if (this.up && World.isFree(this.getX(), (int) (this.y - this.speed))) {
+            this.moved = true;
+            this.y -= this.speed;
+        } else if (this.down && World.isFree(this.getX(), (int) (this.y + this.speed))) {
+            this.moved = true;
+            this.y += this.speed;
+        }
+    }
+
+    private void updatePlayerSpritesAndSoundsIfMoved() {
+        if (this.moved) {
+            this.frames++;
+            int maxFrames = 6;
+            if (this.frames == maxFrames) {
+                this.frames = 0;
+                this.index++;
+
+                int maxIndex = 3;
+                if (this.index > maxIndex) {
+                    if (Game.CUR_LEVEL != 5) {
+                        Sound.playerMovingSound.play();
+                    } else {
+                        Sound.snowFootstep.play();
+                    }
+                    this.index = 0;
+                }
+            }
+        } else {
+            Sound.snowFootstep.stop();
+        }
+    }
+
+    private void checkIfPlayerIsGettingDamage() {
+        if (this.isDamaged) {
+            this.damageFrames++;
+            if (this.damageFrames == 8) {
+                Sound.playerHurtEffect.play();
+                this.damageFrames = 0;
+                this.isDamaged = false;
+                score -= 2;
+            }
+        }
+    }
+
+    private void checkIfPlayerIsHealing() {
+        if (this.isHealing) {
+            this.healingFrames++;
+            if (this.healingFrames == 8) {
+                Sound.healingSound.play();
+                this.healingFrames = 0;
+                this.isHealing = false;
+                score += 2;
+            }
+        }
+    }
+
+    private void checkIfPlayerIsRising() {
+        if (this.isRising) {
+            resetPlayerPosition();
+            blockPlayerMovement();
+
+            World.generateParticles(1, this.getX() + 8, this.getY() + 8, Color.red);
+            this.risingFrames++;
+            Enemy.ghostMode = true;
+
+            if (this.risingFrames == 150) {
+                this.risingFrames = 0;
+                this.isRising = false;
+                Enemy.ghostMode = false;
+            }
+        }
+    }
+
+    private void resetPlayerPosition() {
+        Game.player.setX(xInitial);
+        Game.player.setY(yInitial);
+    }
+
+    private void blockPlayerMovement() {
+        this.moved = false;
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
     }
 
     private void takeDamage() {
@@ -253,6 +268,20 @@ public class Player extends Entity {
                     Game.entities.remove(i);
                     score += 100;
                     return;
+                }
+            }
+        }
+    }
+
+    private void checkIfCoffeeEffectHasBeenTriggered() {
+        if (this.framesIniciaisCafe != 0) {
+            this.framesIniciaisCafe++;
+
+            int coffeeEffectDurationTime = 240;
+            if (this.framesIniciaisCafe == coffeeEffectDurationTime) {
+                this.framesIniciaisCafe = 0;
+                for (Enemy enemy : Game.enemies) {
+                    enemy.enemyCurrentSpeed = previousSpeed;
                 }
             }
         }
