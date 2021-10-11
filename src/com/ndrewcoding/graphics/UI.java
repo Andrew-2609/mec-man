@@ -14,7 +14,7 @@ public class UI {
 
 	public Language language;
 
-	public Language definirTextosUI() {
+	public Language defineUITexts() {
 		if (Menu.language == null) {
 			language = new Portuguese();
 		} else {
@@ -30,21 +30,21 @@ public class UI {
 
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("century gothic", Font.BOLD, 15));
-		g.drawString(definirTextosUI().homeworks + Game.currentHomeworks + "|" + Game.homeworksCount, 32, 20);
+		g.drawString(defineUITexts().homeworks + Game.currentHomeworks + " | " + Game.homeworksCount, 32, 20);
 
 		if (Game.CUR_LEVEL < 9) {
 			g.setColor(Color.yellow);
-			g.drawString(definirTextosUI().level + Game.CUR_LEVEL, 400, 20);
+			g.drawString(defineUITexts().level + Game.CUR_LEVEL, 400, 20);
 		} else if (Game.CUR_LEVEL > 9) {
 			g.setColor(Color.green);
-			g.drawString(definirTextosUI().finalTest, 384, 20);
+			g.drawString(defineUITexts().finalTest, 384, 20);
 		} else {
 			g.setColor(Color.red);
-			g.drawString(definirTextosUI().pandemic, 384, 20);
+			g.drawString(defineUITexts().pandemic, 384, 20);
 		}
 
 		g.setColor(Color.white);
-		g.drawString(definirTextosUI().score + Player.score, 240, 20);
+		g.drawString(defineUITexts().score + Player.score, 240, 20);
 
 		g.setColor(new Color(0, 0, 0, 187));
 		g.fillRect(0, Game.HEIGHT * 2 - 32, Game.WIDTH * 2, 32);
