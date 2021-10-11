@@ -41,8 +41,6 @@ public class Player extends Entity {
 
     public static int score = 0;
 
-    // public int framesTeleporte = 500;
-
     public Player(int x, int y, int width, int height, double speed, BufferedImage sprite, String playerSkin) {
         super(x, y, width, height, speed, sprite);
         Map<String, int[]> playerSkins = populatePlayerSkins();
@@ -202,10 +200,6 @@ public class Player extends Entity {
             }
         }
 
-        /*
-         * // if (framesTeleporte != 500) { // framesTeleporte++; // } // // if
-         * (framesTeleporte == 500) { // framesTeleporte = 500; // }
-         */
         catchHomework();
         catchHoliday();
         catchCoffee();
