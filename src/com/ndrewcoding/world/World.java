@@ -135,6 +135,8 @@ public class World {
 
     public static void restartGame(String level) {
         Game.entities.clear();
+        Game.enemies.clear();
+        Game.infections.clear();
         Game.spritesheet = new Spritesheet("/spritesheet.png");
         Game.player = new Player(0, 0, 16, 16, 1, Game.spritesheet.getSprite(32, 0, 16, 16), "normal");
         Game.entities.add(Game.player);
