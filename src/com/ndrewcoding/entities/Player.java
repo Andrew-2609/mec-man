@@ -186,11 +186,11 @@ public class Player extends Entity {
 
         if (isRising) {
             World.generateParticles(1, this.getX() + 8, this.getY() + 8, Color.red);
-            this.risingFrames++;
+            risingFrames++;
             Enemy.ghostMode = true;
 
-            if (this.risingFrames == 60 * 3) {
-                this.risingFrames = 0;
+            if (risingFrames == 150) {
+                risingFrames = 0;
                 isRising = false;
                 Enemy.ghostMode = false;
             }

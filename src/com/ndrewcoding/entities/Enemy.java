@@ -63,7 +63,7 @@ public class Enemy extends Entity {
 
         if (ghostMode) {
             ghostFrames++;
-            if (ghostFrames >= 140) {
+            if (ghostFrames >= 150) {
                 ghostMode = false;
                 ghostFrames = 0;
             }
