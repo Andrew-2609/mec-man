@@ -1,6 +1,7 @@
 /bin/
 /classes/
 .idea/
+.settings/
 .classpath
 .project
 *.iml
