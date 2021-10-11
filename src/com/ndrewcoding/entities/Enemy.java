@@ -59,9 +59,7 @@ public class Enemy extends Entity {
                     path = AStar.findPath(start, end);
                 }
             }
-        }
-
-        if (ghostMode) {
+        } else {
             ghostFrames++;
             if (ghostFrames >= 150) {
                 ghostMode = false;
