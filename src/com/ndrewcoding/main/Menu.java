@@ -12,22 +12,22 @@ import java.net.URISyntaxException;
 
 public class Menu {
 
-    public String[] options = {"novo_jogo", "meu_github", "sair", "continuar"};
-    public String[] languages = {"pt-br", "en-us", "de-de"};
+    private final String[] options = {"novo_jogo", "meu_github", "sair", "continuar"};
+    private final String[] languages = {"pt-br", "en-us", "de-de"};
 
     public static Language language;
 
-    public int currentOption = 0;
-    public int maxOption = options.length - 1;
+    private int currentOption = 0;
+    private final int maxOption = options.length - 1;
 
-    public int currentLanguage = 0;
-    public int maxLanguage = languages.length;
+    private int currentLanguage = 0;
+    private final int maxLanguage = languages.length;
 
     private int frames = 0;
     private int index = 0;
 
     public boolean up, down, enter;
-    public static boolean languageIsSet = false;
+    private static boolean languageIsSet = false;
 
     public static boolean pause = false;
 
@@ -127,7 +127,7 @@ public class Menu {
 
         g.setColor(Color.white);
         g.setFont(new Font("arial", Font.PLAIN, 20));
-        
+
         if (!languageIsSet) {
             displayLanguageMenu(g);
         } else {
@@ -179,7 +179,7 @@ public class Menu {
         g.setColor(new Color(0, 255, 128));
         Menu.drawCenteredString(language.specialThanks, 480, 440, g);
     }
-    
+
     private void displayPauseMenu(Graphics g) {
         Menu.drawCenteredString(language.continueGame, 480, 200, g);
         g.setColor(Color.yellow);
