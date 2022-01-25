@@ -1,26 +1,17 @@
 package com.ndrewcoding.graphics;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-
 import com.ndrewcoding.entities.Player;
 import com.ndrewcoding.main.Game;
 import com.ndrewcoding.main.languages.Language;
-import com.ndrewcoding.main.Menu;
 import com.ndrewcoding.main.languages.Portuguese;
+
+import java.awt.*;
 
 public class UI {
 
-	public Language language;
+	public Language language = new Portuguese();
 
 	public Language defineUITexts() {
-		if (Menu.language == null) {
-			language = new Portuguese();
-		} else {
-			language = Menu.language;
-		}
-
 		return language;
 	}
 
