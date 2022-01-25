@@ -1,6 +1,6 @@
 package com.ndrewcoding.main.languages;
 
-public class Language {
+public abstract class Language {
 	public String newGame;
 	public String continueGame;
 	public String currentScore;
