@@ -24,9 +24,9 @@ import com.ndrewcoding.main.Game;
 
 public class World {
 
-    public static Tile[] tiles;
+    protected static Tile[] tiles;
     public static int WIDTH, HEIGHT;
-    public static final int TILE_SIZE = 16;
+    private static final int TILE_SIZE = 16;
 
     public World(String path) {
         try {
