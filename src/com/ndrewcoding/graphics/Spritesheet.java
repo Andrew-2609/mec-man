@@ -15,7 +15,7 @@ public class Spritesheet {
 		try {
 			spritesheet = ImageIO.read(Objects.requireNonNull(getClass().getResource(path), "The spritesheet cannot be null!!"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("The was a problem while reading the spritesheet. Error: " + e.getMessage());
 		}
 	}
 	
