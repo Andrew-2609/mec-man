@@ -40,7 +40,7 @@ public class Player extends Entity {
 
     public int tries = 2;
 
-    public static int score = 0;
+    private static int score = 0;
 
     public Player(int x, int y, int width, int height, double speed, BufferedImage sprite, String playerSkin) {
         super(x, y, width, height, speed, sprite);
@@ -240,6 +240,18 @@ public class Player extends Entity {
         }
     }
 
+    public static int getScore() {
+        return score;
+    }
+
+    public static void addScore(int score) {
+        Player.score += score;
+    }
+
+    public static void resetScore() {
+        Player.score = 0;
+    }
+
     private void catchHoliday() {
         for (int i = 0; i < Game.entities.size(); i++) {
             Entity current = Game.entities.get(i);
@@ -368,4 +380,5 @@ public class Player extends Entity {
             }
         }
     }
+
 }

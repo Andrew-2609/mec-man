@@ -68,7 +68,7 @@ public class GameWonScreen {
                 case "jogar_novamente":
                     Game.restartGame = true;
                     Enemy.enemyStaticSpeed = 65;
-                    Player.score = 0;
+                    Player.resetScore();
                     break;
                 case "sair":
                     System.exit(0);
@@ -113,7 +113,7 @@ public class GameWonScreen {
         g.setColor(Color.cyan);
         g.setFont(new Font("impact", Font.PLAIN, 15));
         Menu.drawCenteredString(Menu.language.finalScore, 480, 360, g);
-        Menu.drawCenteredString(Player.score + "", 480, 380, g);
+        Menu.drawCenteredString(Player.getScore() + "", 480, 380, g);
 
         g.setColor(Color.white);
         g.setFont(new Font("arial", Font.PLAIN, 20));

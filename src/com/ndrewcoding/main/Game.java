@@ -130,7 +130,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
                 if (currentHomeworks == homeworksCount) {
                     CUR_LEVEL++;
-                    Player.score = Player.score + 200;
+                    Player.addScore(200);
                     Enemy.enemyRange += 40;
                     if (CUR_LEVEL > MAX_LEVEL) {
                         gameState = GameState.GAME_WON;

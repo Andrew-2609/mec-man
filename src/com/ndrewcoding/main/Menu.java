@@ -185,7 +185,7 @@ public class Menu {
         g.setColor(Color.yellow);
         g.setFont(new Font("impact", Font.PLAIN, 20));
         Menu.drawCenteredString(language.currentScore, 480, 375, g);
-        Menu.drawCenteredString(Player.score + "", 480, 405, g);
+        Menu.drawCenteredString(Player.getScore() + "", 480, 405, g);
     }
 
     private void highlightSelectedOption(Graphics g) {

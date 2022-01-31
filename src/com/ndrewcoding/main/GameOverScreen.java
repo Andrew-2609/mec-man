@@ -60,9 +60,9 @@ public class GameOverScreen {
         Menu.drawCenteredString(Menu.language.exit, 480, 270, g);
 
         Menu.drawCenteredString(Menu.language.finalScore, 480, 350, g);
-        if (Player.score > 0) {
-            Menu.drawCenteredString(Player.score + "", 480, 380, g);
-        } else if (Player.score < 0) {
+        if (Player.getScore() > 0) {
+            Menu.drawCenteredString(Player.getScore() + "", 480, 380, g);
+        } else if (Player.getScore() < 0) {
             Menu.drawCenteredString("0", 480, 380, g);
         }
 

@@ -35,7 +35,7 @@ public class UI {
         }
 
         g.setColor(Color.white);
-        g.drawString(defineUITexts().score + Player.score, 240, 20);
+        g.drawString(defineUITexts().score + Player.getScore(), 240, 20);
 
         g.setColor(new Color(0, 0, 0, 187));
         g.fillRect(0, Game.HEIGHT * 2 - 32, Game.WIDTH * 2, 32);
