@@ -27,4 +27,5 @@ public class Homework extends Entity implements Collectible {
         super.tick();
         beCaught();
     }
+
 }
