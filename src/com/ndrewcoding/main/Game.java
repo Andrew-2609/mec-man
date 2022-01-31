@@ -117,15 +117,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public void tick() {
         switch (Game.gameState) {
-            case NORMAL:
+            case NORMAL -> {
                 for (int i = 0; i < entities.size(); i++) {
                     entities.get(i).tick();
                 }
-
                 for (int i = 0; i < enemies.size(); i++) {
                     enemies.get(i).tick();
                 }
-
                 for (int i = 0; i < infections.size(); i++) {
                     infections.get(i).tick();
                 }
@@ -143,12 +141,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     World.restartGame(newWorld);
                     Enemy.increaseEnemySpeed(1);
                 }
-                break;
-            case MENU:
+            }
+            case MENU -> {
                 player.updateCamera();
                 menu.tick();
-                break;
-            case GAME_OVER:
+            }
+            case GAME_OVER -> {
                 gameOverScreen.tick();
                 if (restartGame) {
                     String newWorld = "level" + CUR_LEVEL + ".png";
@@ -156,8 +154,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     gameState = GameState.NORMAL;
                     restartGame = false;
                 }
-                break;
-            case GAME_WON:
+            }
+            case GAME_WON -> {
                 gameWonScreen.tick();
                 if (restartGame) {
                     CUR_LEVEL = 1;
@@ -166,7 +164,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     gameState = GameState.NORMAL;
                     restartGame = false;
                 }
-                break;
+            }
         }
     }
 
@@ -201,15 +199,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
         ui.render(g);
 
         switch (Game.gameState) {
-            case MENU:
-                menu.render(g);
-                break;
-            case GAME_OVER:
-                gameOverScreen.render(g);
-                break;
-            case GAME_WON:
-                gameWonScreen.render(g);
-                break;
+            case MENU -> menu.render(g);
+            case GAME_OVER -> gameOverScreen.render(g);
+            case GAME_WON -> gameWonScreen.render(g);
         }
 
         bs.show();
@@ -303,47 +295,31 @@ public class Game extends Canvas implements Runnable, KeyListener {
             player.up = false;
 
             switch (Game.gameState) {
-                case MENU:
-                    menu.up = true;
-                    break;
-                case GAME_OVER:
-                    gameOverScreen.up = true;
-                    break;
-                case GAME_WON:
-                    gameWonScreen.up = true;
-                    break;
+                case MENU -> menu.up = true;
+                case GAME_OVER -> gameOverScreen.up = true;
+                case GAME_WON -> gameWonScreen.up = true;
             }
+
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
             player.down = false;
 
             switch (Game.gameState) {
-                case MENU:
-                    menu.down = true;
-                    break;
-                case GAME_OVER:
-                    gameOverScreen.down = true;
-                    break;
-                case GAME_WON:
-                    gameWonScreen.down = true;
-                    break;
+                case MENU -> menu.down = true;
+                case GAME_OVER -> gameOverScreen.down = true;
+                case GAME_WON -> gameWonScreen.down = true;
             }
+
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             switch (Game.gameState) {
-                case MENU:
-                    menu.enter = true;
-                    break;
-                case NORMAL:
+                case MENU -> menu.enter = true;
+                case NORMAL -> {
                     gameState = GameState.MENU;
                     Menu.pause = true;
-                    break;
-                case GAME_OVER:
-                    gameOverScreen.enter = true;
-                    break;
-                case GAME_WON:
-                    gameWonScreen.enter = true;
-                    break;
+                }
+                case GAME_OVER -> gameOverScreen.enter = true;
+                case GAME_WON -> gameWonScreen.enter = true;
             }
         }
 
