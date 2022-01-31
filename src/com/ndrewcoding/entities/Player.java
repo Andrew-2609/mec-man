@@ -93,7 +93,6 @@ public class Player extends Entity {
         checkIfPlayerIsHealing();
         checkIfPlayerIsRising();
 
-        catchHoliday();
         catchCoffee();
         catchGraduationHat();
         verifyIfPlayerIsOnSnow();
@@ -249,25 +248,6 @@ public class Player extends Entity {
 
     public static void resetScore() {
         Player.score = 0;
-    }
-
-    private void catchHoliday() {
-        for (int i = 0; i < Game.entities.size(); i++) {
-            Entity current = Game.entities.get(i);
-            if (current instanceof Holiday) {
-                if (Entity.isColliding(this, current)) {
-                    Sound.calendarCaught.play();
-                    Game.entities.remove(i);
-                    Enemy.ghostMode = true;
-                    for (int i1 = 0; i1 < Game.enemies.size(); i1++) {
-                        Enemy e = Game.enemies.get(i1);
-                        e.ghostFrames = 0;
-                    }
-                    score += 10;
-                    return;
-                }
-            }
-        }
     }
 
     private void checkIfCoffeeEffectHasBeenTriggered() {

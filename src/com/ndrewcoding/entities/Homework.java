@@ -14,7 +14,7 @@ public class Homework extends Entity implements Collectible {
 
     @Override
     public void beCaught() {
-        if (isColliding(Game.player, this)) {
+        if (isColliding(this, Game.player)) {
             Sound.paperCaught.play();
             Game.currentHomeworks++;
             Game.entities.remove(this);
