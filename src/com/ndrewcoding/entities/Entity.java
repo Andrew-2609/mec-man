@@ -13,7 +13,7 @@ import com.ndrewcoding.world.Node;
 import com.ndrewcoding.world.Vector2i;
 import com.ndrewcoding.world.World;
 
-public class Entity {
+public abstract class Entity {
 
     public static BufferedImage HOMEWORK_SPRITE = Game.spritesheet.getSprite(0, 16, 16, 16);
     public static BufferedImage HOLIDAY_SPRITE = Game.spritesheet.getSprite(16, 16, 16, 16);
