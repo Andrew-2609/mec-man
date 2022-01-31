@@ -24,7 +24,6 @@ public class Homework extends Entity implements Collectible {
 
     @Override
     public void tick() {
-        super.tick();
         beCaught();
     }
 
