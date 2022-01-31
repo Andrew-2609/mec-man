@@ -93,7 +93,6 @@ public class Player extends Entity {
         checkIfPlayerIsHealing();
         checkIfPlayerIsRising();
 
-        catchHomework();
         catchHoliday();
         catchCoffee();
         catchGraduationHat();
@@ -265,21 +264,6 @@ public class Player extends Entity {
                         e.ghostFrames = 0;
                     }
                     score += 10;
-                    return;
-                }
-            }
-        }
-    }
-
-    private void catchHomework() {
-        for (int i = 0; i < Game.entities.size(); i++) {
-            Entity current = Game.entities.get(i);
-            if (current instanceof Homework) {
-                if (Entity.isColliding(this, current)) {
-                    Sound.paperCaught.play();
-                    Game.currentHomeworks++;
-                    Game.entities.remove(i);
-                    score += 100;
                     return;
                 }
             }
