@@ -55,7 +55,7 @@ public class Menu {
                 switch (options[currentOption]) {
                     case "novo_jogo":
                     case "continuar":
-                        Game.gameState = "NORMAL";
+                        Game.gameState = GameState.NORMAL;
                         pause = false;
                         break;
                     case "meu_github":

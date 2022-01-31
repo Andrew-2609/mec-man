@@ -1,6 +1,7 @@
 package com.ndrewcoding.entities;
 
 import com.ndrewcoding.main.Game;
+import com.ndrewcoding.main.GameState;
 import com.ndrewcoding.main.Sound;
 import com.ndrewcoding.world.Camera;
 import com.ndrewcoding.world.World;
@@ -232,7 +233,7 @@ public class Player extends Entity {
                 World.generateParticles(500, this.getX(), this.getY(), Color.ORANGE);
                 if (tries == 0) {
                     isRising = false;
-                    Game.gameState = "GAME_OVER";
+                    Game.gameState = GameState.GAME_OVER;
                     Sound.gameOverMusic.loop();
                 }
             }

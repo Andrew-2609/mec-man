@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public static int CUR_LEVEL = 1, MAX_LEVEL = 10;
     public static boolean restartGame = false;
 
-    public static String gameState = "MENU";
+    public static GameState gameState = GameState.MENU;
 
     public Game() {
         addKeyListener(this);
@@ -117,7 +117,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public void tick() {
         switch (Game.gameState) {
-            case "NORMAL":
+            case NORMAL:
                 for (int i = 0; i < entities.size(); i++) {
                     entities.get(i).tick();
                 }
@@ -135,7 +135,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     Player.score = Player.score + 200;
                     Enemy.enemyRange += 40;
                     if (CUR_LEVEL > MAX_LEVEL) {
-                        gameState = "GAME_WON";
+                        gameState = GameState.GAME_WON;
                         CUR_LEVEL = 1;
                     }
                     String newWorld = "level" + CUR_LEVEL + ".png";
@@ -144,26 +144,26 @@ public class Game extends Canvas implements Runnable, KeyListener {
                     Enemy.increaseEnemySpeed(1);
                 }
                 break;
-            case "MENU":
+            case MENU:
                 player.updateCamera();
                 menu.tick();
                 break;
-            case "GAME_OVER":
+            case GAME_OVER:
                 gameOverScreen.tick();
                 if (restartGame) {
                     String newWorld = "level" + CUR_LEVEL + ".png";
                     World.restartGame(newWorld);
-                    gameState = "NORMAL";
+                    gameState = GameState.NORMAL;
                     restartGame = false;
                 }
                 break;
-            case "GAME_WON":
+            case GAME_WON:
                 gameWonScreen.tick();
                 if (restartGame) {
                     CUR_LEVEL = 1;
                     String newWorld = "level" + CUR_LEVEL + ".png";
                     World.restartGame(newWorld);
-                    gameState = "NORMAL";
+                    gameState = GameState.NORMAL;
                     restartGame = false;
                 }
                 break;
@@ -201,13 +201,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
         ui.render(g);
 
         switch (Game.gameState) {
-            case "MENU":
+            case MENU:
                 menu.render(g);
                 break;
-            case "GAME_OVER":
+            case GAME_OVER:
                 gameOverScreen.render(g);
                 break;
-            case "GAME_WON":
+            case GAME_WON:
                 gameWonScreen.render(g);
                 break;
         }
@@ -271,7 +271,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         } else if (CUR_LEVEL == 10) {
             Sound.bgLevelNine.stop();
             Sound.bgLevelTen.loop();
-        } else if (gameState.equals("GAME_WON")) {
+        } else if (gameState.equals(GameState.GAME_WON)) {
             Sound.gameWonMusic.loop();
         }
     }
@@ -303,13 +303,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
             player.up = false;
 
             switch (Game.gameState) {
-                case "MENU":
+                case MENU:
                     menu.up = true;
                     break;
-                case "GAME_OVER":
+                case GAME_OVER:
                     gameOverScreen.up = true;
                     break;
-                case "GAME_WON":
+                case GAME_WON:
                     gameWonScreen.up = true;
                     break;
             }
@@ -317,13 +317,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
             player.down = false;
 
             switch (Game.gameState) {
-                case "MENU":
+                case MENU:
                     menu.down = true;
                     break;
-                case "GAME_OVER":
+                case GAME_OVER:
                     gameOverScreen.down = true;
                     break;
-                case "GAME_WON":
+                case GAME_WON:
                     gameWonScreen.down = true;
                     break;
             }
@@ -331,25 +331,25 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             switch (Game.gameState) {
-                case "MENU":
+                case MENU:
                     menu.enter = true;
                     break;
-                case "NORMAL":
-                    gameState = "MENU";
+                case NORMAL:
+                    gameState = GameState.MENU;
                     Menu.pause = true;
                     break;
-                case "GAME_OVER":
+                case GAME_OVER:
                     gameOverScreen.enter = true;
                     break;
-                case "GAME_WON":
+                case GAME_WON:
                     gameWonScreen.enter = true;
                     break;
             }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            if (gameState.equals("NORMAL")) {
-                gameState = "MENU";
+            if (gameState.equals(GameState.NORMAL)) {
+                gameState = GameState.MENU;
                 Menu.pause = true;
             }
         }
